@@ -5,84 +5,39 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Item {
-    private String type;
-    private String price;
-    private String quantity;
-    private String position;
     private String name;
+    private double price;
+    private Map<String, Double> items = new HashMap<>();
+    File path = new File("vendingmachine.csv");
 
-    public Item(String type, String price, String quantity, String position, String name){
-        this.type = type;
-        this.price = price;
-        this.quantity = quantity;
-        this.position = position;
+    public Item(String name, double price, Map<String, Double> items){
         this.name = name;
+        this.price = price;
+        this.items = items;
     }
 
-    //Methods
-//    public List<String> placingItemPosition(){
-//        File itemListFilePath = new File("vendingmachine.cvs");
-//        List<String> itemPositionList = new ArrayList<>();
-//        try {
-//            Scanner itemList = new Scanner(itemListFilePath);
-//            while (itemList.hasNextLine()){
-//                String itemLine = itemList.nextLine();
-//                String[] items = itemLine.split("\\|");
-//                itemPositionList.add(items[0]);
-//            }
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }return position = itemPositionList;
-//    }
-
-    public void itemsListed(){
-        File itemListFilePath = new File("vendingmachine.cvs");
-        try{
-            Scanner itemList = new Scanner(itemListFilePath);
-
-            while (itemList.hasNextLine()){
-                String itemLine = itemList.nextLine();
-                String[] items = itemLine.split("\\|");
-                this.position = items[0];
-                this.name = items[1];
-                this.price = items[2];
-                this.type = items[3];
+    public Map<String, Double> getItemList(){
+        try {
+            Scanner vendingInventory = new Scanner(path);
+            while (vendingInventory.hasNextLine()){
+                String itemLine = vendingInventory.nextLine();
+                String[] item = itemLine.split("\\|");
+                items.put(item[0], Double.valueOf(item[2]));
             }
         } catch (FileNotFoundException e) {
-
-        }
-    }
-
-
-    public String getType() {
-        return type;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public String getQuantity() {
-        return quantity;
-    }
-
-    public String getPosition() {
-//        File itemListFilePath = new File("vendingmachine.cvs");
-//        List<String> itemPositionList = new ArrayList<>();
-//        try {
-//            Scanner itemList = new Scanner(itemListFilePath);
-//            while (itemList.hasNextLine()){
-//                String itemLine = itemList.nextLine();
-//                String[] items = itemLine.split("\\|");
-//                itemPositionList.add(items[0]);
-//            }
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-        return position;
+            e.printStackTrace();
+        }return items;
     }
 
     public String getName() {
         return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public Map<String, Double> getItems() {
+        return items;
     }
 }

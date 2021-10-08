@@ -42,6 +42,6 @@ public class UserInterface {
     }
 
     public void vendingItemsDisplayed(){
-        System.out.println(item.getPosition());
+        System.out.println(item.getItemList());
     }
 }
