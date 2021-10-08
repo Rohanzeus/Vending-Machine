@@ -11,6 +11,9 @@ public class Item {
         this.quantity = quantity;
     }
 
+    //Methods
+    
+
     public String getType() {
         return type;
     }
