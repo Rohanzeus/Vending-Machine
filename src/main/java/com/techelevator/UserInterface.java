@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class UserInterface {
     Scanner userInput = new Scanner(System.in);
     private int nextMenu = 0;
+    private Item item;
 
 
 
@@ -41,9 +42,6 @@ public class UserInterface {
     }
 
     public void vendingItemsDisplayed(){
-        if (nextMenu == 1){
-            ;
-        }
-
+        System.out.println(item.getPosition());
     }
 }

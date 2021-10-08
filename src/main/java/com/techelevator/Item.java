@@ -2,8 +2,7 @@ package com.techelevator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Item {
     private String type;
@@ -21,6 +20,21 @@ public class Item {
     }
 
     //Methods
+//    public List<String> placingItemPosition(){
+//        File itemListFilePath = new File("vendingmachine.cvs");
+//        List<String> itemPositionList = new ArrayList<>();
+//        try {
+//            Scanner itemList = new Scanner(itemListFilePath);
+//            while (itemList.hasNextLine()){
+//                String itemLine = itemList.nextLine();
+//                String[] items = itemLine.split("\\|");
+//                itemPositionList.add(items[0]);
+//            }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }return position = itemPositionList;
+//    }
+
     public void itemsListed(){
         File itemListFilePath = new File("vendingmachine.cvs");
         try{
@@ -50,5 +64,25 @@ public class Item {
 
     public String getQuantity() {
         return quantity;
+    }
+
+    public String getPosition() {
+//        File itemListFilePath = new File("vendingmachine.cvs");
+//        List<String> itemPositionList = new ArrayList<>();
+//        try {
+//            Scanner itemList = new Scanner(itemListFilePath);
+//            while (itemList.hasNextLine()){
+//                String itemLine = itemList.nextLine();
+//                String[] items = itemLine.split("\\|");
+//                itemPositionList.add(items[0]);
+//            }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+        return position;
+    }
+
+    public String getName() {
+        return name;
     }
 }
