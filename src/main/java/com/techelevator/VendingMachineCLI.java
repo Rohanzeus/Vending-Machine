@@ -13,5 +13,6 @@ public class VendingMachineCLI {
 		ui.mainMenu();
 		ui.vendingItemsDisplayed();
 
+
 	}
 }

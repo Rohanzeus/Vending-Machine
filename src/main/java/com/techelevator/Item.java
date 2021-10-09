@@ -7,22 +7,48 @@ import java.util.*;
 public class Item {
     private String name;
     private double price;
-    private Map<String, Double> items = new HashMap<>();
-    File path = new File("vendingmachine.csv");
+    private String slot;
+    private String type;
+    private int stock;
+    private Map<String, Item> items;
+    File path = new File("C:\\Users\\Student\\workspace\\capstone\\java-capstone-module-1-team-12\\vendingmachine.csv");
 
-    public Item(String name, double price, Map<String, Double> items){
+    public Item(String slot, String name, double price, String type, int stock) {
         this.name = name;
         this.price = price;
-        this.items = items;
+        this.slot = slot;
+        this.type = type;
+        this.stock = stock;
     }
 
-    public Map<String, Double> getItemList(){
+    public Item(String name, double price, Map<String, Double> items) {
+    }
+
+    //    public List<String> getItemList() {
+//        List<String> itemList = null;
+//
+//        try {
+//            Scanner vendingFile = new Scanner(path);
+//            while (vendingFile.hasNextLine()) {
+//                String line = vendingFile.nextLine();
+//                itemList.add(line);
+//            }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }return itemList;
+//    }
+//    public void returnA1 (){
+//        return 1;
+//    }
+    public Map<String, Item> getItemList(){
         try {
             Scanner vendingInventory = new Scanner(path);
             while (vendingInventory.hasNextLine()){
                 String itemLine = vendingInventory.nextLine();
-                String[] item = itemLine.split("\\|");
-                items.put(item[0], Double.valueOf(item[2]));
+                String[] itemDescription;
+                itemDescription = vendingInventory.nextLine().split("\\|");
+                double price = Double.parseDouble(itemDescription[2]);
+                items.put(itemDescription[0], new Item(itemDescription[0],itemDescription[1], price, itemDescription[3], 5));
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -37,7 +63,7 @@ public class Item {
         return price;
     }
 
-    public Map<String, Double> getItems() {
+    public Map<String, Item> getItems() {
         return items;
     }
 }
