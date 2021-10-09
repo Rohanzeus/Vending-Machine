@@ -1,51 +1,88 @@
 package com.techelevator;
 
-import java.util.Scanner;
+import java.io.File;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.util.*;
 
 public class UserInterface {
     Scanner userInput = new Scanner(System.in);
-    private int nextMenu = 0;
-    private Item item = new Item();
+    private Item item;
+    DecimalFormat df = new DecimalFormat("0.00");
 
 
+    public void mainMenu() {
 
-    public void mainMenu(){
+        boolean acceptableSelection = false;
 
-        boolean accaptableSelection = false;
-        try {
-            while (!accaptableSelection) {
-                System.out.println("(1) Display Vending Machine Items.");
-                System.out.println("(2) Purchase.");
-                System.out.println("(3) Exit.");
-                System.out.println("What is your selection");
-                String selection = userInput.nextLine();
-                int selectionInteger = Integer.parseInt(selection);
-                nextMenu = selectionInteger;
-                if (selectionInteger > 3 || selectionInteger <= 0) {
-                    System.out.println("Please enter a selection from 1-3");
-                } else {
-                    accaptableSelection = true;
-                }
-                if (selectionInteger == 1){
-                    nextMenu = 1;
-                }else if (selectionInteger == 2){
-                    nextMenu = 2;
-                }else if (selectionInteger == 3){
-                    nextMenu = 3;
+        while (!acceptableSelection) {
+            System.out.println("(1) Display Vending Machine Items.");
+            System.out.println("(2) Purchase.");
+            System.out.println("(3) Exit.");
+            System.out.println("What is your selection");
+            String selection = userInput.nextLine();
+            if (selection.trim().equals("1")) {
+                displayItems();
+
+            } else if (selection.trim().equals("2")) {
+                purchaseMenu();
+            }
+
+
+        }
+
+    }
+    public void purchaseMenu() {
+
+        boolean acceptableSelection = false;
+        double currentMoney = 0;
+
+
+        while (!acceptableSelection) {
+            System.out.println("(1) Feed Money: ");
+            System.out.println("(2) Select product");
+            System.out.println("(3) Finish transaction");
+            System.out.println("");
+            System.out.println("Current Money Provided: $" + df.format(currentMoney));
+            System.out.println("What is your selection");
+            String selection = userInput.nextLine();
+            if (selection.trim().equals("1")) {
+                System.out.println("How much do you want to put in ($1,$2,$5,$10 as whole number)");
+                String feedAmount =userInput.nextLine();
+                if (feedAmount.equals("1") || feedAmount.equals("2") || feedAmount.equals("5") || feedAmount.equals("10")) {
+                    double feedAmountAsDouble = Double.parseDouble(feedAmount);
+                    currentMoney += feedAmountAsDouble;
                 }else {
-                    nextMenu = 0;
+                    System.out.println("Please enter a valid whole number amount ($1,$2,$5,$10)");
                 }
+            } else if (selection.trim().equals("2")) {
+                displayItems();
+                System.out.println("Please make a selection");
+                String slotSelection = userInput.nextLine();
+
+
 
             }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        System.out.println(nextMenu);
-    }
 
 
-    public void vendingItemsDisplayed(){
-        System.out.println(item.getItemList());
+        }
+
+    }
+
+    public void displayItems() {
+        File path = new File("vendingmachine.csv");
+        try {
+            Scanner inputFile = new Scanner(path);
+            while (inputFile.hasNextLine()) {
+                String fileLine = inputFile.nextLine();
+                System.out.println(fileLine);
+            }
+
+        } catch (Exception e) {
+            System.out.println("woops");
         }
     }
+
+    }
+
 

@@ -11,7 +11,7 @@ public class VendingMachineCLI {
 		// Make some objects here!
 		UserInterface ui = new UserInterface();
 		ui.mainMenu();
-		ui.vendingItemsDisplayed();
+
 
 
 	}

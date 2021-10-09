@@ -11,7 +11,7 @@ public class Item {
     private String type;
     private int stock;
     private Map<String, Item> items;
-    File path = new File("C:\\Users\\Student\\workspace\\capstone\\java-capstone-module-1-team-12\\vendingmachine.csv");
+    File path = new File("vendingmachine.csv");
 
     public Item(String slot, String name, double price, String type, int stock) {
         this.name = name;
@@ -24,27 +24,22 @@ public class Item {
     public Item(String name, double price, Map<String, Double> items) {
     }
 
-    //    public List<String> getItemList() {
-//        List<String> itemList = null;
-//
-//        try {
-//            Scanner vendingFile = new Scanner(path);
-//            while (vendingFile.hasNextLine()) {
-//                String line = vendingFile.nextLine();
-//                itemList.add(line);
-//            }
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }return itemList;
-//    }
-//    public void returnA1 (){
-//        return 1;
-//    }
+        public List<String> displayFullList() {
+            List<String> itemsAsList = new ArrayList<>();
+            try {
+                Scanner inputFile = new Scanner(path);
+                while (inputFile.hasNextLine()) {
+                    String fileLine = inputFile.nextLine();
+                    itemsAsList.add(fileLine);
+                }
+            } catch (Exception e) {
+                System.out.println("woops");
+            }return itemsAsList;
+        }
     public Map<String, Item> getItemList(){
         try {
             Scanner vendingInventory = new Scanner(path);
             while (vendingInventory.hasNextLine()){
-                String itemLine = vendingInventory.nextLine();
                 String[] itemDescription;
                 itemDescription = vendingInventory.nextLine().split("\\|");
                 double price = Double.parseDouble(itemDescription[2]);
