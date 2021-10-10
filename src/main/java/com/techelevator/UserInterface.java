@@ -59,6 +59,10 @@ public class UserInterface {
                 displayItems();
                 System.out.println("Please make a selection");
                 String slotSelection = userInput.nextLine();
+                if (slotSelection.startsWith("A") && item.getItemListSplit().keySet().equals(slotSelection)){
+
+                }
+
 
 
 
