@@ -9,7 +9,7 @@ public class Item {
     private double price;
     private String slot;
     private String type;
-    private int stock = 5;
+    private int stock;
 
 
 
@@ -20,10 +20,13 @@ public class Item {
         this.price = price;
         this.slot = slot;
         this.type = type;
+        this.stock = 5;
 
     }
 
-    public Item(String name, double price, Map<String, Item> items) {
+    public int stockSubtraction(){
+        this.stock -= 1;
+        return this.stock;
     }
 
 
