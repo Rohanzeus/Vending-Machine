@@ -36,5 +36,11 @@ public class Item {
         return price;
     }
 
+    public String getType() {
+        return type;
+    }
 
+    public int getStock() {
+        return stock;
+    }
 }

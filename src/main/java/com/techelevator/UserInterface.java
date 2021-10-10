@@ -7,8 +7,8 @@ import java.util.*;
 
 public class UserInterface {
     Scanner userInput = new Scanner(System.in);
-    private Item item;
     DecimalFormat df = new DecimalFormat("0.00");
+    VendingMachine vendingMachine1 = new VendingMachine();
 
 
     public void mainMenu() {
@@ -25,17 +25,18 @@ public class UserInterface {
                 displayItems();
 
             } else if (selection.trim().equals("2")) {
-                purchaseMenu();
+                purchaseMenu(vendingMachine1);
             }
 
 
         }
 
     }
-    public void purchaseMenu() {
+    public void purchaseMenu(VendingMachine vendingMachine1) {
 
         boolean acceptableSelection = false;
         double currentMoney = 0;
+        int currentStock = 5;
 
 
         while (!acceptableSelection) {
@@ -59,7 +60,20 @@ public class UserInterface {
                 displayItems();
                 System.out.println("Please make a selection");
                 String slotSelection = userInput.nextLine();
-                if (slotSelection.startsWith("A") && item.getItemListSplit().keySet().equals(slotSelection)){
+                slotSelection = slotSelection.toLowerCase(Locale.ROOT);
+                for (String key : vendingMachine1.getItemListSplit().keySet()){
+                    if (key.equalsIgnoreCase(slotSelection)){
+                        if(currentMoney < vendingMachine1.getItemListSplit().get(slotSelection).getPrice()){
+                            System.out.println("Please feed in more money!");
+                        }else{
+                        System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getName() + " ");
+                        System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getPrice() + " ");
+                        System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getType() + " ");
+                        currentStock -= 1;
+                        System.out.println("Crunch Crunch, Yum! " + "Current stock of item is: " + currentStock);
+                        currentMoney -= vendingMachine1.getItemListSplit().get(slotSelection).getPrice();
+                    }
+                    }
 
                 }
 
