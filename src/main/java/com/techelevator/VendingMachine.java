@@ -12,7 +12,6 @@ public class VendingMachine {
     Map<String, Item> itemsInMap = new HashMap<>();
 
     public Map<String, Item> getItemListSplit(){
-
         try {
             Scanner vendingInventory = new Scanner(path);
             while (vendingInventory.hasNextLine()){
@@ -30,11 +29,7 @@ public class VendingMachine {
         }return itemsInMap;
     }
 
-
-
-
     public Map<String, Item> getItemsInMap() {
         return itemsInMap;
     }
-
 }

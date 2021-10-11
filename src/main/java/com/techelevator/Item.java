@@ -11,25 +11,18 @@ public class Item {
     private String type;
     private int stock;
 
-
-
-
-
     public Item(String slot, String name, double price, String type) {
         this.name = name;
         this.price = price;
         this.slot = slot;
         this.type = type;
         this.stock = 5;
-
     }
 
     public int stockSubtraction(){
         this.stock -= 1;
         return this.stock;
     }
-
-
 
     public String getName() {
         return name;

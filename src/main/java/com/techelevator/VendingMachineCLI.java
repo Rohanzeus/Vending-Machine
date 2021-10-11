@@ -12,8 +12,5 @@ public class VendingMachineCLI {
 		UserInterface ui = new UserInterface();
 		ui.mainMenu();
 		System.exit(1);
-
-
-
 	}
 }

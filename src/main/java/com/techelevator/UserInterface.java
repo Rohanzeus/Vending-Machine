@@ -44,8 +44,6 @@ public class UserInterface {
 
         boolean acceptableSelection = false;
         double currentMoney = 0;
-        int currentStock = 5;
-
 
         while (!acceptableSelection) {
             System.out.println("(1) Feed Money: ");
