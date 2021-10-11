@@ -81,47 +81,66 @@ public class UserInterface {
                         if(currentMoney < vendingMachine1.getItemsInMap().get(slotSelection).getPrice()){
                             System.out.println("Please feed in more money!");
                         }else{
-                        System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getName() + " ");
-                        System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getPrice() + " ");
-                        System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getType() + " ");
+//                        System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getName() + " ");
+//                        System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getPrice() + " ");
+//                        System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getType() + " ");
                         double previousMoney = currentMoney;
-                        currentMoney -= vendingMachine1.getItemsInMap().get(slotSelection).getPrice();
-                        if (slotSelection.startsWith("a")){
+//                        currentMoney -= vendingMachine1.getItemsInMap().get(slotSelection).getPrice();
+                        if (slotSelection.startsWith("a") && vendingMachine1.getItemsInMap().get(slotSelection).getStock() > 0){
                             File log = new File("log.txt");
                             try (PrintWriter writer = new PrintWriter(new FileWriter(log, true))) {
                                 writer.println(dateString2 + vendingMachine1.getItemsInMap().get(slotSelection).getName() + " " + slotSelection  + " $" + df.format(previousMoney)+ " $" + df.format(currentMoney));
                             } catch (Exception e) {
                                 System.out.println("The log was not written!");
                             }
+                            System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getName() + " ");
+                            System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getPrice() + " ");
+                            System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getType() + " ");
+                            currentMoney -= vendingMachine1.getItemsInMap().get(slotSelection).getPrice();
                             vendingMachine1.getItemsInMap().get(slotSelection).stockSubtraction();
                             System.out.println("Crunch Crunch, Yum! " + "Current stock of item is: " + vendingMachine1.getItemsInMap().get(slotSelection).getStock());
-                        }else if (slotSelection.startsWith("b")){
+                        }else if (slotSelection.startsWith("b") && vendingMachine1.getItemsInMap().get(slotSelection).getStock() > 0){
                             File log = new File("log.txt");
                             try (PrintWriter writer = new PrintWriter(new FileWriter(log, true))) {
                                 writer.println(dateString2 + vendingMachine1.getItemsInMap().get(slotSelection).getName() + " " + slotSelection  + " $" + df.format(previousMoney)+ " $" + df.format(currentMoney));
                             } catch (Exception e) {
                                 System.out.println("The log was not written!");
                             }
+                            System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getName() + " ");
+                            System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getPrice() + " ");
+                            System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getType() + " ");
+                            currentMoney -= vendingMachine1.getItemsInMap().get(slotSelection).getPrice();
                             vendingMachine1.getItemsInMap().get(slotSelection).stockSubtraction();
                             System.out.println("Munch munch, Yum! " + "Current stock of item is: " + vendingMachine1.getItemsInMap().get(slotSelection).getStock());
-                        }else if (slotSelection.startsWith("c")){
+                        }else if (slotSelection.startsWith("c") && vendingMachine1.getItemsInMap().get(slotSelection).getStock() > 0){
                             File log = new File("log.txt");
                             try (PrintWriter writer = new PrintWriter(new FileWriter(log, true))) {
                                 writer.println(dateString2 + vendingMachine1.getItemsInMap().get(slotSelection).getName() + " " + slotSelection  + " $" + df.format(previousMoney)+ " $" + df.format(currentMoney));
                             } catch (Exception e) {
                                 System.out.println("The log was not written!");
                             }
+                            System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getName() + " ");
+                            System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getPrice() + " ");
+                            System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getType() + " ");
+                            currentMoney -= vendingMachine1.getItemsInMap().get(slotSelection).getPrice();
                             vendingMachine1.getItemsInMap().get(slotSelection).stockSubtraction();
                             System.out.println("Glug glug, Yum! " + "Current stock of item is: " + vendingMachine1.getItemsInMap().get(slotSelection).getStock());
-                        }else {
+                        }else if (slotSelection.startsWith("d") && vendingMachine1.getItemsInMap().get(slotSelection).getStock() > 0){
                             File log = new File("log.txt");
                             try (PrintWriter writer = new PrintWriter(new FileWriter(log, true))) {
                                 writer.println(dateString2 + vendingMachine1.getItemsInMap().get(slotSelection).getName() + " " + slotSelection  + " $" + df.format(previousMoney)+ " $" + df.format(currentMoney));
                             } catch (Exception e) {
                                 System.out.println("The log was not written!");
                             }
+                            System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getName() + " ");
+                            System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getPrice() + " ");
+                            System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getType() + " ");
+                            currentMoney -= vendingMachine1.getItemsInMap().get(slotSelection).getPrice();
                             vendingMachine1.getItemsInMap().get(slotSelection).stockSubtraction();
                             System.out.println("Chew chew, Yum! " + "Current stock of item is: " + vendingMachine1.getItemsInMap().get(slotSelection).getStock());
+                        } else{
+                            System.out.println("Try again selection is empty.");
+
                         }
                     }
                     }
