@@ -1,11 +1,16 @@
 package com.techelevator;
 
 import java.io.File;
-import java.math.BigDecimal;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class UserInterface {
+    DateFormat dateFormat2 = new SimpleDateFormat(" dd/MM/yyyy hh:mm:ss aa ");
+    String dateString2 = dateFormat2.format(new Date()).toString();
     Scanner userInput = new Scanner(System.in);
     DecimalFormat df = new DecimalFormat("0.00");
     VendingMachine vendingMachine1 = new VendingMachine();
@@ -27,6 +32,8 @@ public class UserInterface {
 
             } else if (selection.trim().equals("2")) {
                 purchaseMenu(vendingMachine1);
+            }else {
+                acceptableSelection = true;
             }
 
 
@@ -53,6 +60,13 @@ public class UserInterface {
                 String feedAmount =userInput.nextLine();
                 if (feedAmount.equals("1") || feedAmount.equals("2") || feedAmount.equals("5") || feedAmount.equals("10")) {
                     double feedAmountAsDouble = Double.parseDouble(feedAmount);
+
+                    File log = new File("log.txt");
+                    try (PrintWriter writer = new PrintWriter(new FileWriter(log, true))) {
+                        writer.println(dateString2 + " MONEY FED $" + df.format(currentMoney) + " $" + df.format(feedAmountAsDouble));
+                    } catch (Exception e) {
+                        System.out.println("The log was not written!");
+                    }
                     currentMoney += feedAmountAsDouble;
                 }else {
                     System.out.println("Please enter a valid whole number amount ($1,$2,$5,$10)");
@@ -70,27 +84,87 @@ public class UserInterface {
                         System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getName() + " ");
                         System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getPrice() + " ");
                         System.out.print(vendingMachine1.getItemsInMap().get(slotSelection).getType() + " ");
+                        double previousMoney = currentMoney;
                         currentMoney -= vendingMachine1.getItemsInMap().get(slotSelection).getPrice();
                         if (slotSelection.startsWith("a")){
+                            File log = new File("log.txt");
+                            try (PrintWriter writer = new PrintWriter(new FileWriter(log, true))) {
+                                writer.println(dateString2 + vendingMachine1.getItemsInMap().get(slotSelection).getName() + " " + slotSelection  + " $" + df.format(previousMoney)+ " $" + df.format(currentMoney));
+                            } catch (Exception e) {
+                                System.out.println("The log was not written!");
+                            }
                             vendingMachine1.getItemsInMap().get(slotSelection).stockSubtraction();
                             System.out.println("Crunch Crunch, Yum! " + "Current stock of item is: " + vendingMachine1.getItemsInMap().get(slotSelection).getStock());
                         }else if (slotSelection.startsWith("b")){
+                            File log = new File("log.txt");
+                            try (PrintWriter writer = new PrintWriter(new FileWriter(log, true))) {
+                                writer.println(dateString2 + vendingMachine1.getItemsInMap().get(slotSelection).getName() + " " + slotSelection  + " $" + df.format(previousMoney)+ " $" + df.format(currentMoney));
+                            } catch (Exception e) {
+                                System.out.println("The log was not written!");
+                            }
+                            vendingMachine1.getItemsInMap().get(slotSelection).stockSubtraction();
                             System.out.println("Munch munch, Yum! " + "Current stock of item is: " + vendingMachine1.getItemsInMap().get(slotSelection).getStock());
                         }else if (slotSelection.startsWith("c")){
+                            File log = new File("log.txt");
+                            try (PrintWriter writer = new PrintWriter(new FileWriter(log, true))) {
+                                writer.println(dateString2 + vendingMachine1.getItemsInMap().get(slotSelection).getName() + " " + slotSelection  + " $" + df.format(previousMoney)+ " $" + df.format(currentMoney));
+                            } catch (Exception e) {
+                                System.out.println("The log was not written!");
+                            }
+                            vendingMachine1.getItemsInMap().get(slotSelection).stockSubtraction();
                             System.out.println("Glug glug, Yum! " + "Current stock of item is: " + vendingMachine1.getItemsInMap().get(slotSelection).getStock());
                         }else {
+                            File log = new File("log.txt");
+                            try (PrintWriter writer = new PrintWriter(new FileWriter(log, true))) {
+                                writer.println(dateString2 + vendingMachine1.getItemsInMap().get(slotSelection).getName() + " " + slotSelection  + " $" + df.format(previousMoney)+ " $" + df.format(currentMoney));
+                            } catch (Exception e) {
+                                System.out.println("The log was not written!");
+                            }
+                            vendingMachine1.getItemsInMap().get(slotSelection).stockSubtraction();
                             System.out.println("Chew chew, Yum! " + "Current stock of item is: " + vendingMachine1.getItemsInMap().get(slotSelection).getStock());
                         }
                     }
                     }
 
                 }
-            }else if ()
+            }else if (selection.trim().equals("3")){
+                double currentCents = currentMoney * 100;
+                int nickels = 0;
+                int dimes = 0;
+                int quarters = 0;
+                if (currentCents < 1) {
+                    System.out.println("Thank you, come again");
+                } else {
+                    while (currentCents >= 25) {
+                        currentCents -= 25;
+                        quarters++;
+                    }
+
+                    while (currentCents >= 10) {
+                        currentCents -= 10;
+                        dimes++;
+                    }
+                    while (currentCents >= 5) {
+                        currentCents -= 5;
+                       nickels++;
+                    }
+
+                }
+
+                System.out.println("Your change is " + quarters + " Quarters " + dimes + " Dimes " + nickels + " Nickels");
+                File log = new File("log.txt");
+                try (PrintWriter writer = new PrintWriter(new FileWriter(log, true))) {
+                    writer.println(dateString2 + "GIVE CHANGE: $" + df.format(currentMoney) + " $0.00");
+                } catch (Exception e) {
+                    System.out.println("The log was not written!");
+                }
+               acceptableSelection = true;
+            }
+            }
 
 
         }
 
-    }
 
     public void displayItems() {
         File path = new File("vendingmachine.csv");
@@ -105,6 +179,8 @@ public class UserInterface {
             System.out.println("woops");
         }
     }
+
+
 
     }
 

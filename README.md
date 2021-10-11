@@ -65,7 +65,6 @@ process menu:
    - Each purchase must generate a line in a file called `Log.txt`.
    - The audit entry must be in the format:
         >```
-        > 01/01/2016 12:00:00 PM FEED MONEY: $5.00 $5.00
          >01/01/2016 12:00:15 PM FEED MONEY: $5.00 $10.00
          >01/01/2016 12:00:20 PM Crunchie B4 $10.00 $8.50
          >01/01/2016 12:01:25 PM Cowtales B2 $8.50 $7.50
