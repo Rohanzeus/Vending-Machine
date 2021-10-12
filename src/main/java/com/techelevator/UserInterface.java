@@ -32,8 +32,10 @@ public class UserInterface {
 
             } else if (selection.trim().equals("2")) {
                 purchaseMenu(vendingMachine1);
-            }else {
+            }else if(selection.trim().equals("3")){
                 acceptableSelection = true;
+            }else{
+                System.out.println("Please make a selection from 1-3");
             }
 
 
