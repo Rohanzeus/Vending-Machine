@@ -14,8 +14,8 @@ public class UserInterfaceTest {
 
     @Test
     public void mainMenu_entering_a_number_that_is_not_a_selction(){
-    sut.mainMenu();
+        //Arrange
 
-        Assert.assertEquals("Please make a selection from 1-3","Please make a selection from 1-3");
+        Assert.assertEquals("Please make a selection from 1-3", sut);
     }
 }
